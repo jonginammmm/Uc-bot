@@ -4,7 +4,7 @@ from flask import Flask
 import threading
 
 # TOKEN olish
-TOKEN = os.getenv("8716951130:AAEiikCG797kjvknQU3YuAFe-cyp5FJ3RFs")
+TOKEN = ("8716951130:AAEiikCG797kjvknQU3YuAFe-cyp5FJ3RFs")
 
 if not TOKEN:
     raise ValueError("❌ TOKEN topilmadi! Render ENV ga qo‘sh!")
