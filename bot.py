@@ -275,4 +275,25 @@ def handle_id(message):
     else:
         bot.send_message(message.chat.id,
             "❌ Bunday ID topilmadi yoki noto‘g‘ri kirittiz❗")
+        from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+@bot.message_handler(func=lambda message: True)
+def handle_id(message):
+    user_id = message.text.strip()
+    
+    if check_pubg_id(user_id):
+        
+        markup = InlineKeyboardMarkup(row_width=2)
+        buttons = [
+            InlineKeyboardButton("30 UC - 7000 so'm", callback_data="uc_30"),
+            InlineKeyboardButton("60 UC - 12000 so'm", callback_data="uc_60"),
+            InlineKeyboardButton("90 UC - 18000 so'm", callback_data="uc_90"),
+            InlineKeyboardButton("120 UC - 25000 so'm", callback_data="uc_120"),
+            InlineKeyboardButton("180 UC - 37000 so'm", callback_data="uc_180"),
+            InlineKeyboardButton("325 UC - 63000 so'm", callback_data="uc_325"),
+            InlineKeyboardButton("660 UC - 125000 so'm", callback_data="uc_660"),
+            InlineKeyboardButton("985 UC - 170000 so'm", callback_data="uc_985"),
+            InlineKeyboardButton("1920 UC - 305000 so'm", callback_data="uc_1920"),
+            InlineKeyboardButton("8100 UC - 1120000 so'm", callback_data="uc_8100"),
+        ]
 bot.infinity_polling()
