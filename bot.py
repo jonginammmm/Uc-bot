@@ -239,7 +239,7 @@ def ban_user(m):
 def unban_user(m):
     cursor.execute("UPDATE users SET banned=0 WHERE id=?",(m.text,))
     conn.commit()
-    bot.send_message(m.chat.id,"✅ Unban")
+    bot.send_message(m.chat.id,"✅ Unban qilish")
 
 def user_info(m):
     data = cursor.execute("SELECT phone,balance,banned FROM users WHERE id=?",(m.text,)).fetchone()
@@ -251,4 +251,28 @@ def user_info(m):
         f"👤 ID:{m.text}\n📱 {data[0]}\n💰 {data[1]}\n🚫 {data[2]}")
 
 # ===== RUN =====
+import re
+
+def check_pubg_id(user_id):
+    # faqat raqam bo‘lishi kerak
+    if not user_id.isdigit():
+        return False
+    
+    # uzunlik tekshiruv
+    if len(user_id) < 6 or len(user_id) > 12:
+        return False
+    
+    return True
+
+
+@bot.message_handler(func=lambda message: True)
+def handle_id(message):
+    user_id = message.text.strip()
+    
+    if check_pubg_id(user_id):
+        bot.send_message(message.chat.id,
+            "✅ ID qabul qilindi\n🎮 UC miqdorini tanlang")
+    else:
+        bot.send_message(message.chat.id,
+            "❌ Bunday ID topilmadi yoki noto‘g‘ri kirittiz❗")
 bot.infinity_polling()
