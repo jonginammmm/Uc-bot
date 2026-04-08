@@ -290,5 +290,29 @@ def handle_id(message):
             InlineKeyboardButton("985 UC - 170000 so'm", callback_data="uc_985"),
             InlineKeyboardButton("1920 UC - 305000 so'm", callback_data="uc_1920"),
             InlineKeyboardButton("8100 UC - 1120000 so'm", callback_data="uc_8100"),
+
+            @bot.callback_query_handler(func=lambda call: call.data.startswith("uc_"))
+def handle_uc(call):
+    
+    prices = {
+        "30": "7000 so'm",
+        "60": "12000 so'm",
+        "90": "18000 so'm",
+        "120": "25000 so'm",
+        "180": "37000 so'm",
+        "325": "63000 so'm",
+        "660": "125000 so'm",
+        "985": "170000 so'm",
+        "1920": "305000 so'm",
+        "8100": "1120000 so'm"
+    }
+    
+    uc = call.data.split("_")[1]
+    price = prices.get(uc, "noma'lum")
+    
+    bot.send_message(
+        call.message.chat.id,
+        f"💰 Siz {uc} UC tanladingiz\n💵 Narxi: {price}\n\n💳 To‘log uchin tepada tolov tugmasini bosing✅..."
+    )
         ]
 bot.infinity_polling()
