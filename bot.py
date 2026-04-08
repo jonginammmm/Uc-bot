@@ -290,9 +290,6 @@ def handle_id(message):
             InlineKeyboardButton("985 UC - 170000 so'm", callback_data="uc_985"),
             InlineKeyboardButton("1920 UC - 305000 so'm", callback_data="uc_1920"),
             InlineKeyboardButton("8100 UC - 1120000 so'm", callback_data="uc_8100"),
-
-            @bot.callback_query_handler(func=lambda call: call.data.startswith("uc_"))
-def handle_uc(call):
     
     prices = {
         "30": "7000 so'm",
