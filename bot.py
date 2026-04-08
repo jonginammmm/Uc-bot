@@ -264,11 +264,6 @@ def check_pubg_id(user_id):
     
     return True
 
-
-@bot.message_handler(func=lambda message: True)
-def handle_id(message):
-    user_id = message.text.strip()
-    
     if check_pubg_id(user_id):
         bot.send_message(message.chat.id,
             "✅ ID qabul qilindi\n🎮 UC miqdorini tanlang")
