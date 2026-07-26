@@ -1,10 +1,21 @@
 import os
-from dotenv import load_dotenv
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
-load_dotenv()
+# Render uchun soxta Web Server (Portni ushlab turish uchun)
+class DummyServerHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot muvaffaqiyatli ishlamoqda!")
 
-BOT_TOKEN = os.getenv("8716951130:AAEKmXgRH-4tiCeyOdO5y8CS6W5pY9HoHTg")
-ADMIN_ID = int(os.getenv("6818528455"))
+def run_dummy_server():
+    port = int(os.environ.get("PORT", 8080))
+    server = HTTPServer(("0.0.0.0", port), DummyServerHandler)
+    server.serve_forever()
+
+# Serverni alohida fonda (thread) ishga tushirish
+threading.Thread(target=run_dummy_server, daemon=True).start()
 
 import logging
 import time
