@@ -1,2 +1,2 @@
-pyTelegramBotAPI
-flask
+aiogram==2.25.2
+python-dotenv
